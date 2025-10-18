@@ -6,13 +6,13 @@ function App() {
   
   return (
     <>
-      <div className='w-[100vw] h-[100vh] flex justify-center' >
-        <header className='w-[90%] h-[48px] flex justify-between items-center rounded-[8px]'>
+      <div className='w-screen h-screen flex flex-col items-center' >
+        <header>
           <div className='gap-2 flex items-center'>
-            <span className="material-symbols-outlined">
+            <span className="material-symbols-outlined text-[#1F8459]">
               redo
             </span>
-            <span>
+            <span className='text-[#1F8459] text-2xl font-semibold'>
               refund
             </span>
           </div>

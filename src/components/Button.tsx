@@ -1,10 +1,8 @@
-
-
 const Button = () => {
   return (
-    <div>
-      <button className='bg-[#1F8459] font-bold text-white px-5 py-3.5 rounded-[8px]'>Nova solicitação</button>
-    </div>
+    <button className='bg-[#1F8459] font-bold text-white w-[155px] h-[48px] rounded-[8px]'>
+      Nova solicitação
+    </button>
   )
 }
 

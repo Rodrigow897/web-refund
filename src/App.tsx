@@ -1,6 +1,7 @@
 import './App.css'
 import Button from './components/Button.tsx'
 import Input from './components/Input.tsx'
+import RequestList from './components/requestList.tsx'
 
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
         <section className='flex flex-col p-6 w-[95%] h-[584px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>
             <Input/>
+            
+            <RequestList />
+ 
         </section>
       </div>
     </>

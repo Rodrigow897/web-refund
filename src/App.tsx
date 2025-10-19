@@ -31,10 +31,18 @@ function App() {
           </div>
         </header>
 
-        <section className='flex flex-col p-6 w-[95%] h-[584px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
+        <section className='flex flex-col p-6 w-[80%] h-[650px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>
-            <Input/>
+            <div className='flex flex-row w-[100%] gap-2.5'>
+              <Input/>
+              <Button className='w-[48px] h-[48px]'
+                title=''
+              />
+            </div>
             
+            {/*linha transparentezinha */}
+            <div className='w-[90%] h-[1px] bg-[#abadac4d] self-center'></div>
+
             <RequestList />
  
         </section>

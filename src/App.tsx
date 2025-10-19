@@ -1,7 +1,7 @@
 import './App.css'
 import Button from './components/Button.tsx'
 import Input from './components/Input.tsx'
-import RequestList from './components/requestList.tsx'
+import RequestList from './components/RequestList.tsx'
 
 
 function App() {
@@ -24,7 +24,9 @@ function App() {
               Solicitações de reembolso
             </span>
               <div>
-                <Button/>
+                <Button
+                  title='Nova solicitação'
+                />
               </div>
           </div>
         </header>

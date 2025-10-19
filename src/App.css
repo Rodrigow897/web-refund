@@ -19,3 +19,14 @@ header{
     margin-top: 40px;
     width: 90%
 }
+
+section{
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    width: 95%;
+    height: 584px;
+    background-color: #F9FBFA;
+    border-radius: 16px;
+    margin-top: 30px;
+}

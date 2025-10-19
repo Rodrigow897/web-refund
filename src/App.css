@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -10,23 +8,4 @@ body{
     background-color: #E4ECE9;
     font-family: 'Poppins', sans-serif;
     display: flex;
-}
-
-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-    width: 90%
-}
-
-section{
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    width: 95%;
-    height: 584px;
-    background-color: #F9FBFA;
-    border-radius: 16px;
-    margin-top: 30px;
 }

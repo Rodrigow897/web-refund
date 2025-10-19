@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className='w-screen h-screen flex flex-col items-center' >
-        <header className='flex-col lg:flex-row'>
+        <header className='flex flex-col lg:flex-row justify-between items-center mt-10 w-[90%]'>
           <div className='gap-2 flex items-center'>
             <span className="material-symbols-outlined text-[#1F8459]">
               redo
@@ -28,7 +28,7 @@ function App() {
           </div>
         </header>
 
-        <section className='gap-6'>
+        <section className='flex flex-col p-6 w-[95%] h-[584px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>
             <Input/>
         </section>

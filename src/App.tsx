@@ -2,7 +2,8 @@ import './App.css'
 import Button from './components/Button.tsx'
 import Input from './components/Input.tsx'
 import RequestList from './components/RequestList.tsx'
-import Pagination from './components/pagination.tsx'
+import Pagination from './components/Pagination.tsx'
+
 
 
 

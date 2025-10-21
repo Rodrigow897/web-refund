@@ -31,7 +31,7 @@ const forms = () => {
 
           <div className="flex flex-col gap-1.5 w-[108px] md:w-[128px]">
             <label className="text-[10px] text-[#4D5C57]" htmlFor="">VALOR</label>
-            <Input placeholder="Valor" className="w-[108px] h-[48px] rounded-[8px]" />
+            <Input placeholder="0,00" className="w-[108px] h-[48px] rounded-[8px]" />
           </div>
       </div>
 

@@ -11,7 +11,7 @@ const forms = () => {
 
       <div className="w-[80%] mt-9 flex flex-col gap-1.5">
         <label htmlFor="" className="text-[10px] text-[#4D5C57]">NOME DA SOLICITAÇÃO</label>
-        <Input placeholder="Pesquisar pelo nome" className="w-[100%] rounded-[8px]" />
+        <Input placeholder="Pesquisar pelo nome" className="w-[100%] rounded-[8px] md:w-[410px] lg:w-[414px]" />
       </div>
 
       {/*input Categoria */}
@@ -31,15 +31,15 @@ const forms = () => {
 
           <div className="flex flex-col gap-1.5 w-[108px] md:w-[128px]">
             <label className="text-[10px] text-[#4D5C57]" htmlFor="">VALOR</label>
-            <Input placeholder="0,00" className="w-[108px] h-[48px] rounded-[8px]" />
+            <Input placeholder="0,00" className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px]" />
           </div>
       </div>
 
         <div className="w-[80%] mt-4 flex flex-col gap-1.5">
           <label htmlFor="" className="text-[10px] text-[#4D5C57]">COMPROVANTE</label>
           <div className="flex flex-row">
-            <Input placeholder="Adicionar arquivo.pdf" className="w-[88%] md:w-[432px] h-[48px] rounded-l-[8px] rounded-r-[0px]" />
-            <Button title="" className="w-[48px] h-[48px] absolute right-10" />
+            <Input placeholder="Adicionar arquivo.pdf" className="w-[88%] md:w-[375px] h-[48px] rounded-l-[8px] rounded-r-[0px]" />
+            <Button title="" className="w-[48px] h-[48px] absolute right-10 md:right-13" />
           </div>
         </div>
 

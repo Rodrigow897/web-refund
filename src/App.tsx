@@ -47,12 +47,14 @@ function App() {
           <section className='flex flex-col p-6 w-[80%] h-[700px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>
             <div className='flex flex-row w-[100%] gap-2.5'>
-              <Input/>
+              <Input
+                placeholder='Pesquisar pelo nome'
+              />
               <Button className='w-[48px] h-[48px]' title='' />
             </div>
 
             {/* linha transparente */}
-            <div className='w-[90%] h-[1px] bg-[#abadacaa] self-center'></div>
+            <div className='w-[90%] h-[1px] bg-[#abadac3c] self-center'></div>
 
             <RequestList />
             <Pagination totalItems={15} itemsPerPage={5} />

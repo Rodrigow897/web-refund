@@ -12,7 +12,7 @@ export default function RequestList() {
   ];
 
   return (
-    <div className="flex justify-center items-center mt-5">
+    <div className="flex justify-center items-center">
     <div className="rounded-xl w-[100%] mx-1.5">
       <div className="flex flex-col divide-y divide-gray-100">
         {solicitacoes.map((item, i) => (

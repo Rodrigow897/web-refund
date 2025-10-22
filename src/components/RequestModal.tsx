@@ -9,6 +9,16 @@ type Props = {
 }
 
 const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
+
+  const handleOpenReceipt = () => {
+    if (!receipt) {
+      alert("Nenhum comprovante disponível!");
+      return;
+    }
+    const fileURL = URL.createObjectURL(receipt);
+    window.open(fileURL, "_blank");
+  };
+  
   return (
     <div className="fixed inset-0 bg-[#7877777b] backdrop-blur-xs z-40" onClick={onClose}>
       <div  onClick={(e) => e.stopPropagation()} className="w-100 h-110 md:w-130 md:h-128 lg:w-130 lg:h-128 bg-[#F9FBFA] rounded-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center flex flex-col">
@@ -36,8 +46,10 @@ const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
           </div>
       </div>
 
-        <div className="w-[80%] mt-8 flex flex-col">
-            <Button title="Abrir Comprovante" className="hover:text-[#5cb58e] hover:bg-white w-[100%] bg-white text-[#1F8459] font-bold"/>
+        <div className="w-[80%] mt-8 lg:mt-[50px] flex flex-col">
+            <Button 
+              onForms={handleOpenReceipt}
+              title="Abrir Comprovante" className="hover:text-[#5cb58e] hover:bg-white w-[100%] bg-white text-[#1F8459] font-bold"/>
             <Button
               className="w-[100%]"
               title="Excluir"

@@ -18,7 +18,7 @@ export default function RequestItem({ nome, categoria, valor }: RequestItemProps
   const Icon = icons[categoria] || CircleDollarSign;
 
   return (
-    <div className="flex justify-between items-center py-3 border-b border-gray-100 last:border-none w-[100%]">
+    <div className=" hover:bg-green-100 px-2 rounded-lg flex justify-between items-center py-3 border-b border-gray-100 last:border-none w-[100%]">
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 bg-[#E7F5EE] rounded-full flex items-center justify-center text-[#1F8459]">
           <Icon size={20} />

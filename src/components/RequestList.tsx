@@ -1,25 +1,29 @@
+
 import RequestItem from "./RequestItem";
 
+type Solicitacao = {
+  id: string;
+  nome: string;
+  categoria: string;
+  valor: number;
+  receipt: File | null;
+};
 
-export default function RequestList() {
-  const solicitacoes = [
-    { nome: "Rodrigo", categoria: "Alimentação", valor: 34.78 },
-    { nome: "Tamires", categoria: "Hospedagem", valor: 1200.00 },
-    { nome: "Lara", categoria: "Alimentação", valor: 12.35 },
-    { nome: "Elias", categoria: "Transporte", valor: 47.65 },
-    { nome: "Thiago", categoria: "Serviços", valor: 99.90 },
-    { nome: "Vinicius", categoria: "Outros", valor: 25.89 },
-  ];
+type Props = {
+  data: Solicitacao[];
+  onClick?: () => void;
+};
 
+export default function RequestList({ data, onClick }: Props) {
   return (
-    <div className="flex justify-center items-center">
-    <div className="rounded-xl w-[100%] mx-1.5">
-      <div className="flex flex-col divide-y divide-gray-100">
-        {solicitacoes.map((item, i) => (
-          <RequestItem key={i} {...item} />
-        ))}
+    <button onClick={onClick} className="flex justify-center items-center">
+      <div className="rounded-xl w-[100%] mx-1.5">
+        <div className="flex flex-col divide-y divide-gray-100">
+          {data.map((item) => (
+            <RequestItem key={item.id} {...item} />
+          ))}
+        </div>
       </div>
-    </div>
-    </div>
+    </button>
   );
 }

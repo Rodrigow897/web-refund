@@ -5,12 +5,14 @@ import RequestList from './components/RequestList.tsx'
 import Pagination from './components/Pagination.tsx'
 import { useState } from 'react'
 import Forms from './components/forms.tsx'
+import RequestModal from './components/RequestModal.tsx'
 
 
 
 
 function App() {
   const [newRequest, setNewRequest] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
 
 
 
@@ -56,9 +58,29 @@ function App() {
             {/* linha transparente */}
             <div className='w-[90%] h-[1px] bg-[#abadac3c] self-center'></div>
 
-            <RequestList />
+            <RequestList
+              onClick={() => setOpenModal(true)}
+              data={[
+                { id: "1", nome: "Rodrigo", categoria: "Alimentação", valor: 34.78, receipt: null },
+                { id: "2", nome: "Tamires", categoria: "Hospedagem", valor: 1200.00, receipt: null },
+                { id: "3",nome: "Lara", categoria: "Alimentação", valor: 12.35, receipt: null },
+                { id: "4",nome: "Elias", categoria: "Transporte", valor: 47.65, receipt: null },
+                { id: "5",nome: "Thiago", categoria: "Serviços", valor: 99.90, receipt: null },
+                { id: "6",nome: "Vinicius", categoria: "Outros", valor: 25.89, receipt: null },
+              ]}
+            />
             <Pagination totalItems={15} itemsPerPage={5} />
           </section>  
+        )}
+
+        {openModal && (
+          <RequestModal
+            name="Rodrigo"
+            category="Alimentação"
+            amount={34.78}
+            receipt={null}
+            onClose={() => setOpenModal(false)}
+          />
         )}
       </div>
     </>

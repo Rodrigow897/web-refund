@@ -11,7 +11,7 @@ type Props = {
 
 const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={onClose}>
+    <div className="fixed inset-0 bg-[#7877777b] backdrop-blur-xs z-40" onClick={onClose}>
       <div  onClick={(e) => e.stopPropagation()} className="w-100 h-110 md:w-130 md:h-128 lg:w-130 lg:h-128 bg-[#F9FBFA] rounded-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center flex flex-col">
         <header className="w-[80%] rounded-2xl bg-white flex gap-1.5 flex-col">
           <h1 className="text-[18px] md:text-[20px] font-bold text-[#1F2523] mt-6">Solicitação de reembolso</h1>

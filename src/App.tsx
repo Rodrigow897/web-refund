@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Forms from './components/forms.tsx'
 import RequestModal from './components/RequestModal.tsx'
 import { BiSearchAlt } from 'react-icons/bi';
+import ConfirmDeleteModal from './components/ConfirmDeleteModal.tsx'
 
 type Solicitacao = {
   id: string
@@ -21,6 +22,7 @@ function App() {
   const [newRequest, setNewRequest] = useState(false)
   const [openModal, setOpenModal] = useState(false)
   const [selectedRequest, setSelectedRequest] = useState<Solicitacao | null>(null);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const [requests, setRequests] = useState<Solicitacao[]>([
       { id: "1", nome: "Rodrigo", categoria: "Alimentação", valor: 34.78, receipt: null },
@@ -98,7 +100,17 @@ function App() {
             amount={selectedRequest.valor}
             receipt={selectedRequest.receipt}
             onClose={() => setOpenModal(false)}
-            onDelete={() => handleDeleteRequest(selectedRequest.id)}
+            onDelete={() => setOpenDeleteModal(true)}
+          />
+        )}
+
+        {openDeleteModal && (
+          <ConfirmDeleteModal
+            onCancel={() => setOpenDeleteModal(false)}
+            onConfirm={() => {
+              setOpenDeleteModal(false);
+              handleDeleteRequest(selectedRequest!.id);
+            }}
           />
         )}
       </div>

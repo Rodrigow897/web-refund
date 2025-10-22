@@ -1,4 +1,5 @@
 import Button from "./Button"
+import { RiFilePaperLine } from 'react-icons/ri';
 
 type Props = {
     name: string;
@@ -47,9 +48,10 @@ const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
       </div>
 
         <div className="w-[80%] mt-8 lg:mt-[50px] flex flex-col">
-            <Button 
+            <Button
               onForms={handleOpenReceipt}
-              title="Abrir Comprovante" className="hover:text-[#5cb58e] hover:bg-white w-[100%] bg-white text-[#1F8459] font-bold"/>
+              icon={<RiFilePaperLine size={20} />}
+              title="Abrir Comprovante" className="flex justify-center items-center gap-1.5 hover:text-[#5cb58e] hover:bg-white w-[100%] bg-white text-[#1F8459] font-bold"/>
             <Button
               className="w-[100%]"
               title="Excluir"

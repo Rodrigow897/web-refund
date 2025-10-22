@@ -1,5 +1,8 @@
+
 import Button from "./Button"
 import Input from "./Input"
+import  {PiCloudArrowUp}  from "react-icons/pi"
+
 
 const forms = () => {
   return (
@@ -39,7 +42,7 @@ const forms = () => {
           <label htmlFor="" className="text-[10px] text-[#4D5C57]">COMPROVANTE</label>
           <div className="flex flex-row">
             <Input disabled={true} placeholder="Adicionar arquivo.pdf" className="w-[88%] md:w-[375px] h-[48px] rounded-l-[8px] rounded-r-[0px]" />
-            <Button title="" className="w-[48px] h-[48px] absolute right-10 md:right-13" />
+            <Button  className="w-[48px] h-[48px] absolute right-10 md:right-13 flex justify-center items-center" icon={<PiCloudArrowUp size={26}/>}/>
           </div>
         </div>
 

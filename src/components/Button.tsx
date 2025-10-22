@@ -1,12 +1,14 @@
 import { twMerge } from "tailwind-merge"
 
+
 type Props = {
-  title: string
+  title?: string
   className?: string
   onForms?: () => void
+  icon?: React.ReactNode
 }
 
-const Button = ({ title, className, onForms }: Props) => {
+const Button = ({ title, className, icon, onForms }: Props) => {
   return (
     <button
       onClick={onForms}
@@ -15,6 +17,7 @@ const Button = ({ title, className, onForms }: Props) => {
         className
       )}
     >
+      {icon}
       {title}
     </button>
   )

@@ -6,6 +6,7 @@ import Pagination from './components/Pagination.tsx'
 import { useState } from 'react'
 import Forms from './components/forms.tsx'
 import RequestModal from './components/RequestModal.tsx'
+import { BiSearchAlt } from 'react-icons/bi';
 
 
 
@@ -52,7 +53,9 @@ function App() {
               <Input
                 placeholder='Pesquisar pelo nome'
               />
-              <Button className='w-[48px] h-[48px]' title='' />
+              <Button
+                icon={<BiSearchAlt size={26} />} 
+                className='w-[48px] h-[48px] flex justify-center items-center' title='' />
             </div>
 
             {/* linha transparente */}

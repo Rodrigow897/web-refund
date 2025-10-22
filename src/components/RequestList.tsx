@@ -11,19 +11,21 @@ type Solicitacao = {
 
 type Props = {
   data: Solicitacao[];
-  onClick?: () => void;
+  onClick?: (request: Solicitacao) => void;
 };
 
 export default function RequestList({ data, onClick }: Props) {
   return (
-    <button onClick={onClick} className="flex justify-center items-center">
+    <div className="flex justify-center items-center">
       <div className="rounded-xl w-[100%] mx-1.5">
         <div className="flex flex-col divide-y divide-gray-100">
-          {data.map((item) => (
-            <RequestItem key={item.id} {...item} />
+         {data.map((item) => (
+            <div key={item.id} onClick={() => onClick?.(item)}>
+              <RequestItem {...item} />
+            </div>
           ))}
         </div>
       </div>
-    </button>
+    </div>
   );
 }

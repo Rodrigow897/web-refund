@@ -7,9 +7,10 @@ type Props = {
     amount: number;
     receipt: File | null;
     onClose: () => void;
+    onDelete?: () => void;
 }
 
-const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
+const RequestModal = ({name, category, amount, receipt, onClose, onDelete}: Props) => {
 
   const handleOpenReceipt = () => {
     if (!receipt) {
@@ -55,6 +56,7 @@ const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
             <Button
               className="w-[100%]"
               title="Excluir"
+              onForms={onDelete}
             />
         </div>
       </div>

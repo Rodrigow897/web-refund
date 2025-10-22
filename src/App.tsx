@@ -8,14 +8,33 @@ import Forms from './components/forms.tsx'
 import RequestModal from './components/RequestModal.tsx'
 import { BiSearchAlt } from 'react-icons/bi';
 
-
+type Solicitacao = {
+  id: string
+  nome: string
+  categoria: string
+  valor: number
+  receipt: File | null
+}
 
 
 function App() {
   const [newRequest, setNewRequest] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const [selectedRequest, setSelectedRequest] = useState<Solicitacao | null>(null);
 
+  const [requests, setRequests] = useState<Solicitacao[]>([
+      { id: "1", nome: "Rodrigo", categoria: "Alimentação", valor: 34.78, receipt: null },
+      { id: "2", nome: "Tamires", categoria: "Hospedagem", valor: 1200.00, receipt: null },
+      { id: "3", nome: "Lara", categoria: "Alimentação", valor: 12.35, receipt: null },
+      { id: "4", nome: "Elias", categoria: "Transporte", valor: 47.65, receipt: null },
+      { id: "5", nome: "Thiago", categoria: "Serviços", valor: 99.90, receipt: null },
+      { id: "6", nome: "Vinicius", categoria: "Outros", valor: 25.89, receipt: null },
+    ])
 
+    const handleDeleteRequest = (id: string) => {
+      setRequests((prevRequests) => prevRequests.filter((request) => request.id !== id));
+      setOpenModal(false);
+    }
 
   return (
     <>
@@ -62,27 +81,24 @@ function App() {
             <div className='w-[90%] h-[1px] bg-[#abadac3c] self-center'></div>
 
             <RequestList
-              onClick={() => setOpenModal(true)}
-              data={[
-                { id: "1", nome: "Rodrigo", categoria: "Alimentação", valor: 34.78, receipt: null },
-                { id: "2", nome: "Tamires", categoria: "Hospedagem", valor: 1200.00, receipt: null },
-                { id: "3",nome: "Lara", categoria: "Alimentação", valor: 12.35, receipt: null },
-                { id: "4",nome: "Elias", categoria: "Transporte", valor: 47.65, receipt: null },
-                { id: "5",nome: "Thiago", categoria: "Serviços", valor: 99.90, receipt: null },
-                { id: "6",nome: "Vinicius", categoria: "Outros", valor: 25.89, receipt: null },
-              ]}
-            />
-            <Pagination totalItems={15} itemsPerPage={5} />
+              data={requests}
+              onClick={(request) => {
+                setSelectedRequest(request);
+                setOpenModal(true);
+              }}
+            />  
+            <Pagination totalItems={30} itemsPerPage={5} />
           </section>  
         )}
 
-        {openModal && (
+        {openModal && selectedRequest && (
           <RequestModal
-            name="Rodrigo"
-            category="Alimentação"
-            amount={34.78}
-            receipt={null}
+            name={selectedRequest.nome}
+            category={selectedRequest.categoria}
+            amount={selectedRequest.valor}
+            receipt={selectedRequest.receipt}
             onClose={() => setOpenModal(false)}
+            onDelete={() => handleDeleteRequest(selectedRequest.id)}
           />
         )}
       </div>

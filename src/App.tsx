@@ -24,19 +24,27 @@ function App() {
   const [selectedRequest, setSelectedRequest] = useState<Solicitacao | null>(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  const [requests, setRequests] = useState<Solicitacao[]>([
-      { id: "1", nome: "Rodrigo", categoria: "Alimentação", valor: 34.78, receipt: null },
-      { id: "2", nome: "Tamires", categoria: "Hospedagem", valor: 1200.00, receipt: null },
-      { id: "3", nome: "Lara", categoria: "Alimentação", valor: 12.35, receipt: null },
-      { id: "4", nome: "Elias", categoria: "Transporte", valor: 47.65, receipt: null },
-      { id: "5", nome: "Thiago", categoria: "Serviços", valor: 99.90, receipt: null },
-      { id: "6", nome: "Vinicius", categoria: "Outros", valor: 25.89, receipt: null },
-    ])
+  const [requests, setRequests] = useState<Solicitacao[]>([])
 
     const handleDeleteRequest = (id: string) => {
       setRequests((prevRequests) => prevRequests.filter((request) => request.id !== id));
       setOpenModal(false);
     }
+
+    const handleAddRequest = (newRequestData: {
+        nome: string;
+        categoria: string;
+        valor: number;
+        receipt: File | null;
+    }) => {
+    const newRequest = {
+        id: crypto.randomUUID(),
+          ...newRequestData,
+        };
+
+        setRequests((prev) => [...prev, newRequest]);
+    };  
+
 
   return (
     <>
@@ -66,7 +74,10 @@ function App() {
 
          {/* Se "novaSolicitacao" for true, mostra o form,  Senão, mostra o section */}
         {newRequest ? (
-          <Forms />
+          <Forms
+            onSubmit={() => setNewRequest(false)}
+            onAddRequest={handleAddRequest}
+         />
         ) : (
           <section className='flex flex-col p-6 w-[80%] h-[700px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>
@@ -89,7 +100,7 @@ function App() {
                 setOpenModal(true);
               }}
             />  
-            <Pagination totalItems={30} itemsPerPage={5} />
+            <Pagination totalItems={requests.length} itemsPerPage={5} />
           </section>  
         )}
 

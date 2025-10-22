@@ -1,5 +1,4 @@
 import Button from "./Button"
-import Input from "./Input"
 
 type Props = {
     name: string;
@@ -37,10 +36,10 @@ const RequestModal = ({name, category, amount, receipt, onClose}: Props) => {
           </div>
       </div>
 
-        <div className="w-[80%] mt-4 flex flex-col gap-1.5">
-            <Button title="Abrir Comprovante" className="hover:bg-gray-200 w-[100%] bg-white text-[#1F8459] font-bold"/>
+        <div className="w-[80%] mt-8 flex flex-col">
+            <Button title="Abrir Comprovante" className="hover:text-[#5cb58e] hover:bg-white w-[100%] bg-white text-[#1F8459] font-bold"/>
             <Button
-              className="w-[100%] mt-4"
+              className="w-[100%]"
               title="Excluir"
             />
         </div>

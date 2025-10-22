@@ -24,7 +24,7 @@ export default function RequestItem({ nome, categoria, valor }: RequestItemProps
           <Icon size={20} />
         </div>
         <div>
-          <p className="font-semibold text-[#1F2523]">{nome}</p>
+          <p className="font-semibold text-left text-[#1F2523]">{nome}</p>
           <p className="text-sm text-gray-500">{categoria}</p>
         </div>
       </div>

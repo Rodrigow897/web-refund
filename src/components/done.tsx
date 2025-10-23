@@ -3,9 +3,10 @@ import Button from './Button';
 
 type Props = {
   onClose?: () => void
+  onNewRequest?: () => void
 }
 
-const done = ({onClose}: Props) => {
+const done = ({onClose, onNewRequest}: Props) => {
   return (
     <div className="fixed inset-0 bg-[#7877777b] backdrop-blur-xs z-40" onClick={onClose}>
         <div  onClick={(e) => e.stopPropagation()} className="w-100 h-100 md:w-130 md:h-128 lg:w-130 lg:h-115 bg-[#F9FBFA] rounded-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center flex flex-col">
@@ -16,7 +17,7 @@ const done = ({onClose}: Props) => {
             </div>
             <div className="w-[80%] mt-8 lg:mt-[50px] flex flex-col">
                 <Button
-                onForms={onClose}
+                onForms={onNewRequest}
                 title="Nova Solicitação"
                 className="bg-[#1F8459] font-bold text-white w-[100%] h-[48px] rounded-[8px] hover:bg-[#2ac884d1]"
                 />

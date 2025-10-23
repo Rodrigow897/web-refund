@@ -79,13 +79,14 @@ function App() {
           <Forms
             onSubmit={() => {setNewRequest(false)
             setDone(true);
-            //setTimeout(() => setDone(false), 5000); //5 segundos
+            setTimeout(() => setDone(false), 5000); //5 segundos
             }}
             onAddRequest={handleAddRequest}
          />
          
         ) : done ? (
-            <Done onClose={() => setDone(false)} /> // Mostra o componente Done
+            <Done onClose={() => setDone(false)}
+            onNewRequest={() => setNewRequest(true)}/> // Mostra o componente Done
         ) : (
           <section className='flex flex-col p-6 w-[80%] h-[700px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>

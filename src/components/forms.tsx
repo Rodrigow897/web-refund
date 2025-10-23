@@ -34,7 +34,7 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
   };
 
   const handleSubmit = () => {
-    if (!nome || !categoria || !valor) {
+    if (!nome || !categoria || !valor || !file) {
       alert("Preencha todos os campos!");
       return;
     }

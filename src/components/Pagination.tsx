@@ -1,27 +1,24 @@
-import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {
   totalItems: number;
   itemsPerPage: number;
-  onPageChange?: (page: number) => void;
+  currentPage: number;
+  onPageChange: (page: number) => void;
 };
 
-export default function Pagination({ totalItems, itemsPerPage, onPageChange }: Props) {
+export default function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }: Props) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const [page, setPage] = useState(1);
 
   const nextPage = () => {
-    if (page < totalPages) {
-      setPage(page + 1);
-      onPageChange?.(page + 1);
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
     }
   };
 
   const prevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-      onPageChange?.(page - 1);
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
     }
   };
 
@@ -30,19 +27,19 @@ export default function Pagination({ totalItems, itemsPerPage, onPageChange }: P
       <button
         onClick={prevPage}
         className="bg-[#1F8459] text-white w-8 h-8 rounded-[8px] flex justify-center items-center hover:bg-[#2ac884d1] disabled:opacity-50"
-        disabled={page === 1}
+        disabled={currentPage === 1}
       >
         <ChevronLeft size={18} />
       </button>
 
       <span className="text-gray-700 font-semibold">
-        {page}/{totalPages}
+        {currentPage}/{totalPages || 1}
       </span>
 
       <button
         onClick={nextPage}
         className="bg-[#1F8459] text-white w-8 h-8 rounded-[8px] flex justify-center items-center hover:bg-[#2ac884d1] disabled:opacity-50"
-        disabled={page === totalPages}
+        disabled={currentPage === totalPages || totalPages === 0}
       >
         <ChevronRight size={18} />
       </button>

@@ -26,7 +26,15 @@ function App() {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [done, setDone] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  
+
   const [requests, setRequests] = useState<Solicitacao[]>([])
+  const currentRequests = requests.slice(startIndex, endIndex);
 
     const handleDeleteRequest = (id: string) => {
       setRequests((prevRequests) => prevRequests.filter((request) => request.id !== id));
@@ -103,13 +111,19 @@ function App() {
             <div className='w-[90%] h-[1px] bg-[#abadac3c] self-center'></div>
 
             <RequestList
-              data={requests}
+              data={currentRequests}
               onClick={(request) => {
                 setSelectedRequest(request);
                 setOpenModal(true);
               }}
-            />  
-            <Pagination totalItems={requests.length} itemsPerPage={5} />
+            />
+
+            <Pagination
+              totalItems={requests.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+            />
           </section>  
         )}
 

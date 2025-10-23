@@ -8,6 +8,7 @@ import Forms from './components/forms.tsx'
 import RequestModal from './components/RequestModal.tsx'
 import { BiSearchAlt } from 'react-icons/bi';
 import ConfirmDeleteModal from './components/ConfirmDeleteModal.tsx'
+import Done from './components/done.tsx'
 
 type Solicitacao = {
   id: string
@@ -23,6 +24,7 @@ function App() {
   const [openModal, setOpenModal] = useState(false)
   const [selectedRequest, setSelectedRequest] = useState<Solicitacao | null>(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [done, setDone] = useState(false);
 
   const [requests, setRequests] = useState<Solicitacao[]>([])
 
@@ -75,9 +77,15 @@ function App() {
          {/* Se "novaSolicitacao" for true, mostra o form,  Senão, mostra o section */}
         {newRequest ? (
           <Forms
-            onSubmit={() => setNewRequest(false)}
+            onSubmit={() => {setNewRequest(false)
+            setDone(true);
+            //setTimeout(() => setDone(false), 5000); //5 segundos
+            }}
             onAddRequest={handleAddRequest}
          />
+         
+        ) : done ? (
+            <Done onClose={() => setDone(false)} /> // Mostra o componente Done
         ) : (
           <section className='flex flex-col p-6 w-[80%] h-[700px] bg-[#F9FBFA] rounded-2xl mt-[30px] gap-6'>
             <h1 className='text-[20px] lg:text-[24px] text-[#1F2523] font-bold'>Solicitações</h1>

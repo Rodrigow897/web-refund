@@ -98,12 +98,26 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
 
         <div className="flex flex-col gap-1.5 w-[108px] md:w-[128px]">
           <label className="text-[10px] text-[#4D5C57]">VALOR</label>
-          <Input
-            placeholder="0,00"
-            value={valor}
-            onChange={(e: any) => setValor(e.target.value)}
-            className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px]"
-          />
+            <Input
+              placeholder="0,00"
+              value={valor}
+              type="text"
+              onChange={(e: any) => {
+                let input = e.target.value
+
+                // Remove tudo que não for número
+                input = input.replace(/\D/g, "")
+
+                // Se tiver algo digitado, formata como centavos
+                if (input.length > 0) {
+                  input = (Number(input) / 100).toFixed(2)
+                  input = input.replace(".", ",") // troca o ponto pela vírgula
+                }
+
+                setValor(input)
+              }}
+              className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px]"
+            />
         </div>
       </div>
 

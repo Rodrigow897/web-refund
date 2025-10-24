@@ -9,6 +9,7 @@ import RequestModal from './components/RequestModal.tsx'
 import { BiSearchAlt } from 'react-icons/bi';
 import ConfirmDeleteModal from './components/ConfirmDeleteModal.tsx'
 import Done from './components/done.tsx'
+import { RiRefund2Fill } from 'react-icons/ri';
 
 type Solicitacao = {
   id: string
@@ -69,9 +70,7 @@ function App() {
       <div className='w-screen h-screen flex flex-col items-center'>
         <header className='flex flex-col lg:flex-row justify-between items-center mt-10 w-[90%]'>
           <div className='gap-2 flex items-center'>
-            <span className="material-symbols-outlined text-[#1F8459]">
-              redo
-            </span>
+            <RiRefund2Fill size={38} color="#1F8459" />
             <span className='text-[#1F8459] text-2xl font-semibold'>
               refund
             </span>

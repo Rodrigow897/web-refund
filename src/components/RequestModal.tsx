@@ -44,7 +44,7 @@ const RequestModal = ({name, category, amount, receipt, onClose, onDelete}: Prop
 
           <div className="flex flex-col gap-1.5 w-[108px] md:w-[128px]">
             <label className="text-[10px] text-[#4D5C57]" htmlFor="">VALOR</label>
-            <div className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px] border border-gray-300 px-3 flex  items-center text-center">{amount}</div>
+            <div className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px] border border-gray-300 px-3 flex  items-center text-center">R$ {amount.toFixed(2)}</div>
           </div>
       </div>
 

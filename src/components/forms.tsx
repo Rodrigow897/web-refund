@@ -42,7 +42,7 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
     onAddRequest({
       nome,
       categoria,
-      valor: parseFloat(valor),
+      valor: parseFloat(valor.replace(",", ".")),
       receipt: file,
     });
 

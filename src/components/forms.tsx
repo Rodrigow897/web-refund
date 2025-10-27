@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import { PiCloudArrowUp } from "react-icons/pi";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import axios from "axios";
 
 type FormsProps = {
   onSubmit?: () => void;
@@ -22,6 +23,115 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
   const [categoria, setCategoria] = useState("");
   const [valor, setValor] = useState("");
 
+  // Mapeamento de categoria para ID
+  const getCategoryId = (categoria: string): number => {
+    const categoryMap: Record<string, number> = {
+      Alimentação: 1,
+      Transporte: 2,
+      Hospedagem: 3,
+      Serviços: 4,
+      Outros: 5,
+    };
+    return categoryMap[categoria] || 5;
+  };
+
+  const handleSubmitForm = async () => {
+    if (!nome || !categoria || !valor || !file) {
+      Swal.fire({
+        title: "Ops!",
+        text: "Preencha todos os campos!",
+        icon: "error",
+      });
+      return;
+    }
+
+    try {
+      // Converter valor de "123,45" para número (123.45)
+      const valorNumero = parseFloat(valor.replace(",", "."));
+
+      // Converter categoria para ID
+      const categoriesId = getCategoryId(categoria);
+
+      // Preparar dados para envio no formato JSON
+      const payload = {
+        name: nome,
+        value: valorNumero.toString(),
+        categories_id: categoriesId.toString(),
+        status_id: "1", // Status padrão: Pendente
+        receipt_path: file.name || "abc", // Nome do arquivo
+      };
+
+      // Log do payload que será enviado
+      console.log("📤 Payload que será enviado:");
+      console.log(payload);
+
+      const response = await axios.post(
+        "http://localhost:3000/requests",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        Swal.fire({
+          title: "Sucesso!",
+          text: "Solicitação enviada com sucesso!",
+          icon: "success",
+        });
+
+        // Adicionar a solicitação à lista local
+        onAddRequest({
+          nome,
+          categoria,
+          valor: valorNumero,
+          receipt: file,
+        });
+
+        // Chamar callback de submit se fornecido
+        if (onSubmit) {
+          onSubmit();
+        }
+
+        // Limpar formulário
+        setNome("");
+        setCategoria("");
+        setValor("");
+        setFile(null);
+        setFileName("");
+      }
+    } catch (error) {
+      console.error(error);
+
+      // Detalhes do erro para debug
+      let errorMessage =
+        "Não foi possível enviar a solicitação. Tente novamente.";
+
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          // Erro do servidor
+          errorMessage = `Erro ${error.response.status}: ${
+            error.response.data?.message || error.response.statusText
+          }`;
+        } else if (error.request) {
+          // Servidor não respondeu
+          errorMessage =
+            "Não foi possível conectar ao servidor. Verifique se o backend está rodando.";
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      Swal.fire({
+        title: "Erro!",
+        text: errorMessage,
+        icon: "error",
+      });
+    }
+  };
+
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
@@ -32,35 +142,6 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
       setFile(file);
       setFileName(file.name);
     }
-  };
-
-  const handleSubmit = () => {
-    if (!nome || !categoria || !valor || !file) {
-       Swal.fire({
-      title: 'Ops!',
-      text: 'Preencha todos os campos!',
-      icon: 'error',
-      confirmButtonText: 'Ok',
-      confirmButtonColor:'#1F8459'
-    });
-      return;
-    }
-
-    onAddRequest({
-      nome,
-      categoria,
-      valor: parseFloat(valor.replace(",", ".")),
-      receipt: file,
-    });
-
-    // limpa os campos
-    setNome("");
-    setCategoria("");
-    setValor("");
-    setFile(null);
-    setFileName("");
-
-    if (onSubmit) onSubmit();
   };
 
   return (
@@ -75,7 +156,9 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
       </header>
 
       <div className="w-[80%] mt-9 flex flex-col gap-1.5">
-        <label className="text-[10px] text-[#4D5C57]">NOME DA SOLICITAÇÃO</label>
+        <label className="text-[10px] text-[#4D5C57]">
+          NOME DA SOLICITAÇÃO
+        </label>
         <Input
           placeholder="Ex: Elias"
           value={nome}
@@ -105,26 +188,26 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
 
         <div className="flex flex-col gap-1.5 w-[108px] md:w-[128px]">
           <label className="text-[10px] text-[#4D5C57]">VALOR</label>
-            <Input
-              placeholder="0,00"
-              value={valor}
-              type="text"
-              onChange={(e: any) => {
-                let input = e.target.value
+          <Input
+            placeholder="0,00"
+            value={valor}
+            type="text"
+            onChange={(e: any) => {
+              let input = e.target.value;
 
-                // Remove tudo que não for número
-                input = input.replace(/\D/g, "")
+              // Remove tudo que não for número
+              input = input.replace(/\D/g, "");
 
-                // Se tiver algo digitado, formata como centavos
-                if (input.length > 0) {
-                  input = (Number(input) / 100).toFixed(2)
-                  input = input.replace(".", ",") // troca o ponto pela vírgula
-                }
+              // Se tiver algo digitado, formata como centavos
+              if (input.length > 0) {
+                input = (Number(input) / 100).toFixed(2);
+                input = input.replace(".", ","); // troca o ponto pela vírgula
+              }
 
-                setValor(input)
-              }}
-              className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px]"
-            />
+              setValor(input);
+            }}
+            className="w-[108px] md:w-[138px] h-[48px] rounded-[8px] lg:w-[140px]"
+          />
         </div>
       </div>
 
@@ -155,9 +238,8 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
       <Button
         className="w-[80%] mt-4"
         title="Enviar"
-        onForms={handleSubmit}
+        onForms={handleSubmitForm}
       />
-
     </div>
   );
 };

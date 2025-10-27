@@ -1,4 +1,10 @@
-import { CircleDollarSign, CarFront, BedDouble, Wrench, Utensils } from "lucide-react";
+import {
+  CircleDollarSign,
+  CarFront,
+  BedDouble,
+  Wrench,
+  Utensils,
+} from "lucide-react";
 
 const icons: Record<string, React.ElementType> = {
   Alimentação: Utensils,
@@ -9,12 +15,16 @@ const icons: Record<string, React.ElementType> = {
 };
 
 interface RequestItemProps {
-  nome: string;
+  name: string;
   categoria: string;
   valor: number;
 }
 
-export default function RequestItem({ nome, categoria, valor }: RequestItemProps) {
+export default function RequestItem({
+  name,
+  categoria,
+  valor,
+}: RequestItemProps) {
   const Icon = icons[categoria] || CircleDollarSign;
 
   return (
@@ -24,7 +34,7 @@ export default function RequestItem({ nome, categoria, valor }: RequestItemProps
           <Icon size={20} />
         </div>
         <div>
-          <p className="font-semibold text-left text-[#1F2523]">{nome}</p>
+          <p className="font-semibold text-left text-[#1F2523]">{name}</p>
           <p className="text-sm text-gray-500">{categoria}</p>
         </div>
       </div>

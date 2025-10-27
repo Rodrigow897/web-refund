@@ -12,8 +12,8 @@ import Done from './components/done.tsx'
 import { RiRefund2Fill } from 'react-icons/ri';
 
 type Solicitacao = {
-  id: string
-  nome: string
+  id: string | number // Allow both number (from API) and string (from new requests)
+  name: string
   categoria: string
   valor: number
   receipt: File | null
@@ -34,20 +34,20 @@ function App() {
 
   //Função de busca
   const filteredRequests = requests.filter((req) =>
-    req.nome.toLowerCase().includes(searchTerm.toLowerCase())
+    req.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const currentRequests = filteredRequests.slice(startIndex, endIndex)
 
-  const handleDeleteRequest = (id: string) => {
-    setRequests((prevRequests) => prevRequests.filter((request) => request.id !== id))
+  const handleDeleteRequest = (id: string | number) => {
+    setRequests((prevRequests) => prevRequests.filter((request) => request.id != id))
     setOpenModal(false)
   }
 
   const handleAddRequest = (newRequestData: {
-    nome: string
+    name: string
     categoria: string
     valor: number
     receipt: File | null
@@ -143,7 +143,7 @@ function App() {
 
         {openModal && selectedRequest && (
           <RequestModal
-            name={selectedRequest.nome}
+            name={selectedRequest.name}
             category={selectedRequest.categoria}
             amount={selectedRequest.valor}
             receipt={selectedRequest.receipt}

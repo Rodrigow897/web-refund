@@ -18,6 +18,7 @@ interface RequestItemProps {
   name: string;
   categoria: string;
   valor: number;
+  receipt: string;
 }
 
 export default function RequestItem({

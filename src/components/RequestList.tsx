@@ -4,7 +4,7 @@ import axios from "axios";
 
 // Tipo baseado no que a API retorna
 type SolicitacaoAPI = {
-  id: number;
+  id: number | string;
   name: string;
   categories_id: number;
   value: string;
@@ -15,10 +15,11 @@ type SolicitacaoAPI = {
 
 // Tipo que o componente RequestItem espera
 type Solicitacao = {
-  id: number;
+  id: number | string;
   name: string;
   categoria: string;
   valor: number;
+  receipt: File | null;
 };
 
 // Mapeamento de IDs de categoria para nomes
@@ -52,6 +53,7 @@ export default function RequestList({ data, onClick }: Props) {
           name: item.name,
           categoria: categoriaMap[item.categories_id] || "Outros",
           valor: parseFloat(item.value),
+          receipt: File ? new File([], item.receipt_path) : null,
         }));
 
         setRequests(formattedRequests);
@@ -84,6 +86,7 @@ export default function RequestList({ data, onClick }: Props) {
                 name={item.name}
                 categoria={item.categoria}
                 valor={item.valor}
+                receipt={item.receipt ? item.receipt.name : ""}
               />
             </div>
           ))}

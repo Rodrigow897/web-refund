@@ -28,7 +28,7 @@ export default function Pagination({
   };
 
   return (
-    <div className="absolute bottom-30 lg:bottom-0 right-[50%] translate-x-[50%] flex justify-center items-center gap-3 pb-3 mt-1.5">
+    <div className="absolute bottom-30 lg:bottom-40 right-[50%] translate-x-[50%] flex justify-center items-center gap-3 pb-3 mt-1.5">
       <button
         onClick={prevPage}
         className="bg-[#1F8459] text-white w-8 h-8 rounded-[8px] flex justify-center items-center hover:bg-[#2ac884d1] disabled:opacity-50"

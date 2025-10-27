@@ -8,7 +8,7 @@ import axios from "axios";
 type FormsProps = {
   onSubmit?: () => void;
   onAddRequest: (request: {
-    nome: string;
+    name: string;
     categoria: string;
     valor: number;
     receipt: File | null;
@@ -84,7 +84,7 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
 
         // Adicionar a solicitação à lista local
         onAddRequest({
-          nome,
+          name: nome,
           categoria,
           valor: valorNumero,
           receipt: file,

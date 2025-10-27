@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import { PiCloudArrowUp } from "react-icons/pi";
+import Swal from 'sweetalert2'
 
 type FormsProps = {
   onSubmit?: () => void;
@@ -35,7 +36,13 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
 
   const handleSubmit = () => {
     if (!nome || !categoria || !valor || !file) {
-      alert("Preencha todos os campos!");
+       Swal.fire({
+      title: 'Ops!',
+      text: 'Preencha todos os campos!',
+      icon: 'error',
+      confirmButtonText: 'Ok',
+      confirmButtonColor:'#1F8459'
+    });
       return;
     }
 

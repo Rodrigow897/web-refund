@@ -24,7 +24,8 @@ export default function ConfirmDeleteModal({ onCancel, onConfirm }: Props) {
           <Button
             onForms={onConfirm}
             title="Confirmar"
-            className="hover:bg-[#2ac884d1] font-semibold px-5 py-2 rounded-lg"
+            className="hover:bg-[#2ac884d1] transition-colors
+ font-semibold px-5 py-2 rounded-lg"
           />
         </div>
       </div>

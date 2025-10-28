@@ -10,6 +10,7 @@ import { BiSearchAlt } from 'react-icons/bi';
 import ConfirmDeleteModal from './components/ConfirmDeleteModal.tsx'
 import Done from './components/done.tsx'
 import { RiRefund2Fill } from 'react-icons/ri';
+import axios from 'axios'
 
 type Solicitacao = {
   id: string | number // Allow both number (from API) and string (from new requests)
@@ -41,24 +42,42 @@ function App() {
   const endIndex = startIndex + itemsPerPage
   const currentRequests = filteredRequests.slice(startIndex, endIndex)
 
-  const handleDeleteRequest = (id: string | number) => {
-    setRequests((prevRequests) => prevRequests.filter((request) => request.id != id))
-    setOpenModal(false)
-  }
+  const handleDeleteRequest = async (id: string | number) => {
+  try {
+    await axios.delete(`http://localhost:3000/requests/${id}`)
+    
+    // recarrega a lista atualizada do backend
+      axios.get<Solicitacao[]>(`http://localhost:3000/requests`)
+      .then((response) => {
+        setRequests(response.data)
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar solicitações:', error)
+      })
 
-  const handleAddRequest = (newRequestData: {
+      setOpenModal(false)
+  } catch (error) {
+    console.error('Erro ao deletar:', error)
+  }
+}
+
+
+const handleAddRequest = async (newRequestData: {
     name: string
     categoria: string
     valor: number
     receipt: File | null
   }) => {
-    const newRequest = {
-      id: crypto.randomUUID(),
-      ...newRequestData,
-    }
+  try {
+    const res = await axios.post("http://localhost:3000/requests", newRequestData)
+    const created = res.data
 
-    setRequests((prev) => [...prev, newRequest])
+    // adiciona o item retornado do backend (com id numérico)
+    setRequests((prev) => [...prev, created])
+  } catch (error) {
+    console.error("Erro ao adicionar solicitação:", error)
   }
+} 
 
   // Função chamada ao clicar no botão de busca (aqui ela só garante resetar a página)
   const handleSearch = () => {

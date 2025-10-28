@@ -62,7 +62,7 @@ const Forms = ({ onSubmit, onAddRequest }: FormsProps) => {
       };
 
       // Log do payload que será enviado
-      console.log("📤 Payload que será enviado:");
+      console.log("Payload que será enviado:");
       console.log(payload);
 
       const response = await axios.post(

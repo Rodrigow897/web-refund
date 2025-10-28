@@ -15,6 +15,7 @@ const icons: Record<string, React.ElementType> = {
 };
 
 interface RequestItemProps {
+  id?: number | string;
   name: string;
   categoria: string;
   valor: number;

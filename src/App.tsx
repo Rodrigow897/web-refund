@@ -13,7 +13,7 @@ import { RiRefund2Fill } from 'react-icons/ri';
 import axios from 'axios'
 
 type Solicitacao = {
-  id: string | number // Allow both number (from API) and string (from new requests)
+  id: string | number 
   name: string
   categoria: string
   valor: number

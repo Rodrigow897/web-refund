@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="2880" height="1620" alt="Thumbnail" src="https://github.com/user-attachments/assets/8e4fc2c8-f2a0-4326-9ccd-8fea5dd64717" />
 
-Currently, two official plugins are available:
+# 💰 Sistema de Reembolso Web
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Uma aplicação **web** desenvolvida para gerenciar solicitações de reembolso de forma simples, rápida e eficiente.  
+O sistema se comunica com a **API REST Node.js** e permite **visualizar, cadastrar, editar e excluir solicitações**, com upload de comprovantes e categorização.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+### 🖥️ **Frontend**
+- ⚛️ **React.js** — interface moderna e reativa  
+- 🌐 **Axios** — comunicação com a API  
+- 🧭 **React Router DOM** — navegação entre páginas  
+- 📸 **FileReader API** — upload e preview de comprovantes  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ⚙️ **Backend**
+- 🟩 **Node.js + Express.js** — servidor REST API  
+- 🐘 **PostgreSQL / SQLite** — banco de dados relacional  
+- 🛠️ **pg** — conexão e queries SQL  
+- 🔄 **CORS e dotenv** — controle de segurança e variáveis de ambiente  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧠 Funcionalidades Principais
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+✅ Listagem de todas as solicitações de reembolso  
+✅ Cadastro de novas solicitações com nome, valor, categoria e comprovante  
+✅ Exclusão de solicitações  
+✅ Visualização de detalhes da solicitação  
+✅ Upload e download de comprovantes  
+✅ Exibição da categoria diretamente na tabela  
+✅ Integração total com a API Node.js (porta padrão: `3000`)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Estrutura de Pastas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```bash
+📂 web-refund
+├── 📁 src
+│   ├── 📁 components        # Componentes reutilizáveis (botões, cards, modais etc)
+│   ├── 📁 assets            # Ícones, imagens e arquivos estáticos
+│   ├── App.jsx              # Componente principal do app
+│   └── main.jsx             # Ponto de entrada da aplicação
+├── 📄 package.json
+├── 📄 README.md
+````
+🧩 Instalação e Execução
+
+🔧 1. Clonar o repositório
+```bash 
+git clone https://github.com/seu-usuario/refund-web.git
+cd refund-web
+````
+💅 Preview do Sistema
+
+🖼️ Tela inicial: listagem de solicitações
+🖼️ Modal: criação de nova solicitação com upload
+🖼️ Detalhes: comprovante e status da solicitação
+
+
+Desenvolvido Rodrio Wesley👨‍💻
+
+💚 Estudante de Análise e Desenvolvimento de Sistemas
+🚀 Sonhando alto e construindo o futuro com código.
+
+📧 Email: rwesley2000@gmail.com
+🌍 LinkedIn: https://www.linkedin.com/in/rodrigo-nascimento-9630b3303/
+
+🧾 Licença
+
+Este projeto está sob a licença MIT.
+Sinta-se livre para usar, modificar e contribuir! 
